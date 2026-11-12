@@ -1,6 +1,6 @@
 {
-  "versionCode": 9,
-  "versionName": "1.5.0",
-  "notes": "其余功能对照成熟扫描 App 修复：①表格识别不再按空格分列，改为读取文字块坐标→按行聚合→按列聚类还原行列并补空单元格，输出 CSV；相机「表格识别」模式已直连该流程。②Word 导出由「HTML 改名 .doc」换成标准 OOXML .docx（zip 内 contentTypes/rels/document.xml），Word/WPS 不再提示格式不符。③PDF 导出页面按图片比例生成（长边 842、边距 12），横版扫描件不再被压进竖版 A4。④黑白滤镜改为先局部背景归一化再自适应阈值，阴影下不再整段吃字；OCR 前按彩色/增强/黑白预处理。",
-  "downloadUrl": "https://my.feishu.cn/file/Bki0bncTfo5AS3xSpoBcewqencc"
+  "versionCode": 10,
+  "versionName": "1.5.1",
+  "notes": "移除全部签到相关功能：首页顶部「签到领空间」入口与「我的」页「签到」按钮及其弹窗逻辑一并删除，界面无余留占位。其余功能与 1.5.0 一致（表格识别还原行列、标准 .docx 导出、PDF 按图片比例、黑白滤镜先去阴影再二值化）。",
+  "downloadUrl": "https://my.feishu.cn/file/NY36b6UK6oadUhxc0YfcO1sKnif"
 }
