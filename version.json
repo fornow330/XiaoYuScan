@@ -1,6 +1,6 @@
 {
-  "versionCode": 6,
-  "versionName": "1.3.2",
-  "notes": "1.修复自动识别边缘失效（阈值算法过高导致永远检测不到纸）；2.修复识别框画到屏幕外，预览改为完整显示，检测框与纸张对齐；3.闪光灯改为点亮预览的手电筒，按钮即时生效；4.机型不支持三路并发时自动退化为拍完再裁边；5.更新检查取三线路最高版本号。",
-  "downloadUrl": "https://my.feishu.cn/file/OmjTbWTwkoPiKVxBf1yc9dY0nqe"
+  "versionCode": 7,
+  "versionName": "1.3.3",
+  "notes": "1.修复检查更新卡在转圈：现在各线路并发查询、总耗时最多6秒；2.版本线路扩到7条（jsDelivr三节点/GitHub原始/ghproxy/gh-proxy/ghfast），能通哪条算哪条；3.查不到版本时不再谎称“已是最新”，改为提示当前版本并可直接去云盘。",
+  "downloadUrl": "https://my.feishu.cn/file/AlClbQXuHoVHMqx34zOc47GLnAb"
 }
