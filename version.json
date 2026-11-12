@@ -1,6 +1,6 @@
 {
-  "versionCode": 8,
-  "versionName": "1.4.0",
-  "notes": "重写自动边缘识别：不再用对比区域的外接矩形，改为灰度模糊→Sobel梯度双阈值(Canny简化)→膨胀连边→连通域→凸包→闭合多边形简化→四点，并按面积/凸性/内角校验取最大四边形；边缘弱时用Otsu分割纸张区域取贴合朝向的四个角。旋转、透视的纸张都能贴住真实四角。",
-  "downloadUrl": "https://my.feishu.cn/file/Bx1PbKA4eojYERxIiwycrrwXnxf"
+  "versionCode": 9,
+  "versionName": "1.5.0",
+  "notes": "其余功能对照成熟扫描 App 修复：①表格识别不再按空格分列，改为读取文字块坐标→按行聚合→按列聚类还原行列并补空单元格，输出 CSV；相机「表格识别」模式已直连该流程。②Word 导出由「HTML 改名 .doc」换成标准 OOXML .docx（zip 内 contentTypes/rels/document.xml），Word/WPS 不再提示格式不符。③PDF 导出页面按图片比例生成（长边 842、边距 12），横版扫描件不再被压进竖版 A4。④黑白滤镜改为先局部背景归一化再自适应阈值，阴影下不再整段吃字；OCR 前按彩色/增强/黑白预处理。",
+  "downloadUrl": "https://my.feishu.cn/file/Bki0bncTfo5AS3xSpoBcewqencc"
 }
