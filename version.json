@@ -1,0 +1,6 @@
+{
+  "versionCode": 2,
+  "versionName": "1.1.0",
+  "notes": "新增应用内检查更新：关于页可手动检查新版本，三条线路（jsDelivr / GitHub raw / ghproxy 镜像）自动回退，全部失败提示已是最新；证件扫描支持正反两面自动排到同一张 A4；文字提取支持按行选字、长按全选。包名 cc.fornow.scan。",
+  "downloadUrl": "https://my.feishu.cn/drive/folder/NRP0fyYGwljMmPdBZNmcYl9Vnuh"
+}
