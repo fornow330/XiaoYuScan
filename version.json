@@ -1,6 +1,6 @@
 {
-  "versionCode": 2,
-  "versionName": "1.1.0",
-  "notes": "新增应用内检查更新：关于页可手动检查新版本，三条线路（jsDelivr / GitHub raw / ghproxy 镜像）自动回退，全部失败提示已是最新；证件扫描支持正反两面自动排到同一张 A4；文字提取支持按行选字、长按全选。包名 cc.fornow.scan。",
+  "versionCode": 3,
+  "versionName": "1.2.0",
+  "notes": "修复扫描主流程：新增取景页实时边缘识别（每0.4秒检测纸张边界并橙色框选）、A4引导框+四角括号+网格、拍照页整体重做（顶部圆形按钮/模式胶囊/渐变遮罩/新底部面板）、编辑页工具高亮与提示优化；关闭自动裁剪不再显示检测框；检测不到边界不再假装成功。包名 cc.fornow.scan。",
   "downloadUrl": "https://my.feishu.cn/drive/folder/NRP0fyYGwljMmPdBZNmcYl9Vnuh"
 }
