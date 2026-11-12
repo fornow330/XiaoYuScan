@@ -1,6 +1,6 @@
 {
-  "versionCode": 7,
-  "versionName": "1.3.3",
-  "notes": "1.修复检查更新卡在转圈：现在各线路并发查询、总耗时最多6秒；2.版本线路扩到7条（jsDelivr三节点/GitHub原始/ghproxy/gh-proxy/ghfast），能通哪条算哪条；3.查不到版本时不再谎称“已是最新”，改为提示当前版本并可直接去云盘。",
-  "downloadUrl": "https://my.feishu.cn/file/AlClbQXuHoVHMqx34zOc47GLnAb"
+  "versionCode": 8,
+  "versionName": "1.4.0",
+  "notes": "重写自动边缘识别：不再用对比区域的外接矩形，改为灰度模糊→Sobel梯度双阈值(Canny简化)→膨胀连边→连通域→凸包→闭合多边形简化→四点，并按面积/凸性/内角校验取最大四边形；边缘弱时用Otsu分割纸张区域取贴合朝向的四个角。旋转、透视的纸张都能贴住真实四角。",
+  "downloadUrl": "https://my.feishu.cn/file/Bx1PbKA4eojYERxIiwycrrwXnxf"
 }
