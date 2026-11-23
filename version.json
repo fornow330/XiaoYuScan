@@ -1,6 +1,7 @@
 {
-  "versionCode": 33,
-  "versionName": "1.7.4",
-  "notes": "第四轮修 bug + 性能，仍不动功能：\n1. 修编辑页预览泄漏：连点滤镜会每次都留一张 1200px 位图，旧的从不回收；现在换图即回收。\n2. 保存页面不再卡主线程：JPEG 压缩和写索引原来在 UI 线程跑，页大时会顿一下；改到 IO 线程。\n3. 文档页网格后台预热前 12 页缩略图，长文档滚下去不用现场解码。\n47 个用例全绿。",
-  "downloadUrl": "https://my.feishu.cn/file/RCWKbBAoyoUQ46xDuCicSSOhnEf"
+  "versionCode": 34,
+  "versionName": "1.7.5",
+  "notes": "第五轮修 bug + 性能，仍不动功能：\n1. 修「我的」页统计卡顿：存储/缓存占用原来在主线程遍历目录，页一多就顿；改到 IO 线程，并去掉缓存大小重复遍历。\n2. 修去弯曲（自动纠偏）内存爆：原来整幅两张 IntArray，2600×3500 一页要 70MB，低内存机型直接 OOM；改成 384 行分带读写，峰值约 5MB。\n3. 重写去底色：原来逐像素 new IntArray(3)，一页要分配上千万个临时数组，GC 抽风；改成先分带统计直方图、再分带 LUT 映射，效果不变。\n4. 补两条用例（去底色纸底变白、大图去弯曲不改变尺寸），49 个用例全绿。"
+ ,
+  "downloadUrl": "https://my.feishu.cn/file/TpPfbPo0Qo60ocxvd5ZcYtK1nDe"
 }
