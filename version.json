@@ -1,7 +1,7 @@
 {
-  "versionCode": 47,
-  "versionName": "1.9.5",
-  "notes": "第八轮：性能、兼容、功能、BUG 检测。\n修复（BUG 检测）：\n1. PDF 导出资源泄漏：ImageOps.exportPdf / exportPdfA4 的 PdfDocument.close() 不在 finally，中途任何一页解码失败就直接跑掉，native 句柄整份漏掉；现在统一在 finally 里 close。\n2. 单页位图漏回收：画完之后才 recycle，drawBitmap 抛异常那张整页图（十几兆）就留在内存里；改成 try/finally 无条件回收。\n3. 签名页连点「保存」会存两份并弹两次分享；加 saving 标记挡住重复提交，失败时复位。\n功能：\n4. 文档批量导出可选「合并成一份 PDF」：按列表顺序把勾选文档的所有页拼成一个 PDF，标页码，生成后直接可分享，避免十几张长图散在相册里。\n性能：\n5. 批量导出 PDF 复用的仍是流式解码 + 即时回收，内存峰值不随页数线性上涨。\n兼容：\n6. 空列表直接返回 false，不再无谓创建 PdfDocument。\n71 个用例全绿。"
+  "versionCode": 48,
+  "versionName": "1.9.6",
+  "notes": "第九轮：性能、兼容、功能、BUG 检测。\n修复（BUG 检测）：\n1. 缩略图并发登记错误：等待方 3 秒超时后自己去解码，退出时却把「别人」登记的在途记录一起摘掉，后面的请求就看不到在途任务，又重新解一遍同一文件。改成只有登记者自己清理（remove(key, gate)）。\n性能：\n2. 列表搜索每次按键都对每份文档重做 ignoreCase 的 contains，正文最长 4000 字，文档一多输入框就发涩。现在给 Doc 缓一份小写拼串（首次计算、改名和重新识别时置空），过滤只做一次 lowercase + contains。\n功能：\n3. 导出 PDF 支持页码范围：弹框输入「1-3,5」只导这几页，页不太多时可把一份文档拆成几份 PDF 交出去；文件名带「第1-3页」标记，页脚页码按导出范围算。\n兼容/隐私：\n4. 关掉系统备份（allowBackup=false）：以前整份索引连同页面图会被云备份/换机迁移带走，私密文档等于绕开了本机验证。\n测试：\n5. 新增 PageRangeTest（6 个用例）：单项/列表、混写「1-3，5」、越界夹取与去重、倒序区间、整段越界丢弃、标签压缩回「1-3,5」。\n77 个用例全绿。"
 ,
-  "downloadUrl": "https://my.feishu.cn/file/ALQbbdel5oPpezx32HQcYHFTnWb"
+  "downloadUrl": "https://my.feishu.cn/file/J4I2bwGXgordM7xMvoWcPdtmnJg"
 }
