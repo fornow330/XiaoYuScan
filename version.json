@@ -1,7 +1,7 @@
 {
-  "versionCode": 44,
-  "versionName": "1.9.2",
-  "notes": "第五轮全代码巡检，这轮翻的是导出（docx/xlsx）、OCR 排版和裁剪页的预览并发。\n修复：\n1. 裁剪页连点滤镜会闪退：取消只是打标记，已经在算的那一轮照样把结果带回来，晚到的旧结果会把「正在显示的那张」当旧图回收掉，下一帧绘制就崩。现在给预览加了序号，过期的结果自己回收自己。\n2. 导出的 docx 每个 XML 部件都带一个换行开头（trimIndent 只去了缩进），XML 声明不在文件最开头，严格的解析器会认为格式非法；改成把首尾空白一起剪掉。\n3. OCR 排版每换一段会多插一个空行：换行语句写了两遍，一段一段加空行、块与块之间再叠一层，成稿看着一片稀碎。改成只在确实需要时加一个换行，块之间只留一个空行。\n4. OCR 续行时英文直接粘在一起：同一段里的下一行如果和上一行都是 ASCII 字符，中间补一个空格，不然单词会连成一串。\n5. xlsx 里「1,23,4」这种不规范的数字逗号也被当成千分位去掉了，转成了 1234；现在只有符合规范的分组（1,234 / 12,345,678.9）才转数字，其余按原文保留。\n新增测试：\n6. 加 ExportFormatTest（3 个用例）：docx 每个部件必须以 <?xml 开头且不能有前导换行、正文行数要对、xlsx 千分位/前导零/不规范逗号的取舍要对。\n65 个用例全绿。"
+  "versionCode": 45,
+  "versionName": "1.9.3",
+  "notes": "这版重点是兼容性和保存链路，顺手补了两处体验。\n兼容/修复：\n1. 「保存到相册」在 Android 7~9 上其实是全废的：MediaStore 插入时只给了 RELATIVE_PATH（那是 10 才有的列），缺 DATA 列、又没有存储权限，插入直接失败，用户只看到「保存失败」。现在按版本分流：\n   · Android 10+ 走 MediaStore，先用 IS_PENDING=1 写、写完置 0，中途失败就删记录，相册里不会留半张图；\n   · Android 9 及以下写公共 Pictures 目录再让 MediaScanner 索引，没给存储权限则退到应用自己的图片目录，至少能保存、能分享。\n2. 清单补上 WRITE_EXTERNAL_STORAGE（maxSdkVersion=28），7~9 上才有写公共相册的资格。\n3. 文档列表的返回键改挂 OnBackPressedDispatcher：Android 13 起系统不再回调 onBackPressed()，多选状态下按返回会直接退出列表而不是先退出多选。\n功能/体验：\n4. 文档批量 OCR 现在显示「正在识别 3/12 页」，几十页时不再是干转圈。\n5. 文档列表搜索加 150ms 防抖：以前每敲一个字就全量过滤并重建列表，文档多了输入发涩。\n测试：\n6. 加 GalleryCompatTest（3 个用例）：API 34 走 MediaStore 能落盘、API 28 无权限时仍能存到应用目录、API 28 上确实声明了写外部存储权限。\n68 个用例全绿。"
  ,
-  "downloadUrl": "https://my.feishu.cn/file/LfTdbONZQoNTTRxIQzmctGPZnVg"
+  "downloadUrl": "https://my.feishu.cn/file/Ab6TbQQ8aoW5rvxbl49c23DBnHc"
 }
