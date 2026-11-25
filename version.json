@@ -1,7 +1,7 @@
 {
-  "versionCode": 45,
-  "versionName": "1.9.3",
-  "notes": "这版重点是兼容性和保存链路，顺手补了两处体验。\n兼容/修复：\n1. 「保存到相册」在 Android 7~9 上其实是全废的：MediaStore 插入时只给了 RELATIVE_PATH（那是 10 才有的列），缺 DATA 列、又没有存储权限，插入直接失败，用户只看到「保存失败」。现在按版本分流：\n   · Android 10+ 走 MediaStore，先用 IS_PENDING=1 写、写完置 0，中途失败就删记录，相册里不会留半张图；\n   · Android 9 及以下写公共 Pictures 目录再让 MediaScanner 索引，没给存储权限则退到应用自己的图片目录，至少能保存、能分享。\n2. 清单补上 WRITE_EXTERNAL_STORAGE（maxSdkVersion=28），7~9 上才有写公共相册的资格。\n3. 文档列表的返回键改挂 OnBackPressedDispatcher：Android 13 起系统不再回调 onBackPressed()，多选状态下按返回会直接退出列表而不是先退出多选。\n功能/体验：\n4. 文档批量 OCR 现在显示「正在识别 3/12 页」，几十页时不再是干转圈。\n5. 文档列表搜索加 150ms 防抖：以前每敲一个字就全量过滤并重建列表，文档多了输入发涩。\n测试：\n6. 加 GalleryCompatTest（3 个用例）：API 34 走 MediaStore 能落盘、API 28 无权限时仍能存到应用目录、API 28 上确实声明了写外部存储权限。\n68 个用例全绿。"
+  "versionCode": 46,
+  "versionName": "1.9.4",
+  "notes": "这轮做性能、兼容、功能和 bug 检测四件事。\n修复（BUG 检测）：\n1. 批注页翻页会闪退：先回收上一页大图、再挂新图，中间任何一次绘制都会碰到已回收的位图。改成先 setImageBitmap 再回收旧图。\n2. 批注保存后把仍在显示的页面图回收了：保存失败时页面还得继续能看能画，回收时机改到 onDestroy。\n性能：\n3. 缩略图重复解码：同一张页面在图库里两处同时可见、或快速滑动连续请求，会各解一遍同一文件。现在加在途去重（同键只解一次，其余等待后直接拿缓存，最多等 3 秒）。\n兼容/功能：\n4. 打印：以前一律报「页数未知」，系统打印预览看不到总页数；现在流式扫描 PDF 页对象数出页数（8KB 块 + 不占大内存），并按 A4、无页边距调用，同时补上 onWrite 的取消处理。\n5. 文档列表长按菜单新增「导出 PDF」：不用先进详情再点导出，跳转后自动开始生成（私密文档不自动导出，仍先验证）。\n测试：\n6. 加 PdfPrintTest（3 个用例）：页对象计数要对、/Type /Pages 页树不能算页、非 PDF 返回未知、超大页数会被 cap 截住。\n71 个用例全绿。"
  ,
-  "downloadUrl": "https://my.feishu.cn/file/Ab6TbQQ8aoW5rvxbl49c23DBnHc"
+  "downloadUrl": "https://my.feishu.cn/file/NH6UbXG3HohFL6xnICFc3qlJnKc"
 }
