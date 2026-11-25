@@ -1,7 +1,7 @@
 {
-  "versionCode": 46,
-  "versionName": "1.9.4",
-  "notes": "这轮做性能、兼容、功能和 bug 检测四件事。\n修复（BUG 检测）：\n1. 批注页翻页会闪退：先回收上一页大图、再挂新图，中间任何一次绘制都会碰到已回收的位图。改成先 setImageBitmap 再回收旧图。\n2. 批注保存后把仍在显示的页面图回收了：保存失败时页面还得继续能看能画，回收时机改到 onDestroy。\n性能：\n3. 缩略图重复解码：同一张页面在图库里两处同时可见、或快速滑动连续请求，会各解一遍同一文件。现在加在途去重（同键只解一次，其余等待后直接拿缓存，最多等 3 秒）。\n兼容/功能：\n4. 打印：以前一律报「页数未知」，系统打印预览看不到总页数；现在流式扫描 PDF 页对象数出页数（8KB 块 + 不占大内存），并按 A4、无页边距调用，同时补上 onWrite 的取消处理。\n5. 文档列表长按菜单新增「导出 PDF」：不用先进详情再点导出，跳转后自动开始生成（私密文档不自动导出，仍先验证）。\n测试：\n6. 加 PdfPrintTest（3 个用例）：页对象计数要对、/Type /Pages 页树不能算页、非 PDF 返回未知、超大页数会被 cap 截住。\n71 个用例全绿。"
- ,
-  "downloadUrl": "https://my.feishu.cn/file/NH6UbXG3HohFL6xnICFc3qlJnKc"
+  "versionCode": 47,
+  "versionName": "1.9.5",
+  "notes": "第八轮：性能、兼容、功能、BUG 检测。\n修复（BUG 检测）：\n1. PDF 导出资源泄漏：ImageOps.exportPdf / exportPdfA4 的 PdfDocument.close() 不在 finally，中途任何一页解码失败就直接跑掉，native 句柄整份漏掉；现在统一在 finally 里 close。\n2. 单页位图漏回收：画完之后才 recycle，drawBitmap 抛异常那张整页图（十几兆）就留在内存里；改成 try/finally 无条件回收。\n3. 签名页连点「保存」会存两份并弹两次分享；加 saving 标记挡住重复提交，失败时复位。\n功能：\n4. 文档批量导出可选「合并成一份 PDF」：按列表顺序把勾选文档的所有页拼成一个 PDF，标页码，生成后直接可分享，避免十几张长图散在相册里。\n性能：\n5. 批量导出 PDF 复用的仍是流式解码 + 即时回收，内存峰值不随页数线性上涨。\n兼容：\n6. 空列表直接返回 false，不再无谓创建 PdfDocument。\n71 个用例全绿。"
+,
+  "downloadUrl": "https://my.feishu.cn/file/ALQbbdel5oPpezx32HQcYHFTnWb"
 }
