@@ -1,7 +1,7 @@
 {
-  "versionCode": 49,
-  "versionName": "1.9.7",
-  "notes": "第十轮：性能、兼容、功能、BUG 检测。\n修复（BUG 检测）：\n1. 替换页面会写出半张图：编辑页「保存」直接覆盖原 JPEG，这时列表/详情的缩略图线程正好在读同一文件，拿到的是写了一半的数据。改为先写 .tmp 再改名，读方要么旧图要么新图；失败时清掉 .tmp，不再污染「已使用」统计。\n2. 删一份文档就把整张缩略图缓存清空：其它文档的缩略图全部作废、重新解码，删除后列表明显卡一下。新增 Thumbs.evictPrefix，只淘汰该文档目录下的键。\n3. 诊断包一个文件读失败整包作废：zip 条目不 close 就接着 putNextEntry 会直接抛异常，剩下的样本和崩溃日志都没进包。改为 finally 里 closeEntry。\n兼容（旧系统路径）：\n4. Android 9 及以下兜底保存不看写入结果：编码失败也报「已保存」，用户去找一张空图；公共相册目录写失败还会留 0 字节 .tmp 垃圾。现在检查 write() 返回值并清理临时文件。\n功能：\n5. 文档搜索支持空格分词（AND 语义）：搜「合同 张」只要同时含这两个词就命中，全角空格、多个空格都能正确切开。\n性能：\n6. 搜索过滤走缓存的已小写拼串 + 分词预切，输入框每次按键只做 contains，不再重复 lowercase。\n测试：\n7. 新增 SearchQueryTest（5 个用例）：半角/全角空格切分、空白串、AND 语义、大小写不敏感。\n82 个用例全绿。"
+  "versionCode": 50,
+  "versionName": "1.9.8",
+  "notes": "第十一轮：性能、兼容、功能、BUG 检测。\n修复（BUG 检测，两处死循环）：\n1. 崩溃日志轮转卡死在异常处理器里：`while (files.size >= 3) files.first().delete()` 里 listFiles() 是快照，size 永远不变，目录里攒够 3 份崩溃日志后，下次崩溃就原地死循环、ANR。改为按修改时间批量删旧（抽成 FileRotation.keepNewest）。\n2. 识别失败样本同一处写错：攒够 20 张就死循环，相机页直接卡住。同样改为批量轮转。\n性能：\n3. 样本写盘挪出调用线程：JPEG 编码几十毫秒，这段常常正好落在相机预览的 UI 线程上，连续识别失败会明显掉帧。现在交给后台线程编码并在那儿回收位图。\n兼容（外置存储不可用）：\n4. `getExternalFilesDir()` 在存储被弹出/不可用时返回 null，之前直接 `File(null, \"exports\")` 会拼出相对路径，文件写到莫名其妙的位置：PDF 落盘与相册兜底保存都回退到内部目录。\n功能：\n5. 文档批量导出新增第三项「全部合并成一张长图」：按列表顺序把所选文档所有页拼成一张超长图，票据/聊天记录这类连续内容一张发出去最省事，可直接保存相册或分享。\n测试：\n6. 新增 FileRotationTest（5 个用例）：超限删最旧、不足不动、正好等于上限、keep=0、目录不存在。\n87 个用例全绿。"
 ,
-  "downloadUrl": "https://my.feishu.cn/file/X0vDb2YxAoqvMvxirwoc9sicnrZ"
+  "downloadUrl": "https://my.feishu.cn/file/O6jJbhylJowu3cxrgljcBAQ7n7b"
 }
