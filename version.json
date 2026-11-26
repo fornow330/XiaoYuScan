@@ -1,7 +1,6 @@
 {
-  "versionCode": 52,
-  "versionName": "1.9.10",
-  "notes": "1. 收边 snapSides 改为逐点拟合，修掉左边缘外扩到画面边界（贴边采样点被跳过导致基准为 0）\n2. 清掉未启用的双向梯度精修/主色扫描实验代码"
-,
-  "downloadUrl": "https://my.feishu.cn/file/PhIEbNjIboyhKFx4nUEcNgjZnxg"
+  "versionCode": 53,
+  "versionName": "1.9.11",
+  "notes": "1. 删除代码里完全没用到的 Material 依赖，主题改用 AppCompat，APK 14.7MB → 13.9MB\n2. 去掉 minSdk 24 下多余的 vectorDrawables supportLibrary",
+  "downloadUrl": "https://my.feishu.cn/file/UUZIbBMnjohWCjx9iL6cjA1FnSd"
 }
