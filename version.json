@@ -1,6 +1,6 @@
 {
-  "versionCode": 53,
-  "versionName": "1.9.11",
-  "notes": "1. 删除代码里完全没用到的 Material 依赖，主题改用 AppCompat，APK 14.7MB → 13.9MB\n2. 去掉 minSdk 24 下多余的 vectorDrawables supportLibrary",
-  "downloadUrl": "https://my.feishu.cn/file/UUZIbBMnjohWCjx9iL6cjA1FnSd"
+  "versionCode": 54,
+  "versionName": "1.9.12",
+  "notes": "1. 冷启动读索引时不再逐页 File.exists，改为目录列一次查表\n2. 启动的临时文件清理改为每天最多一次\n3. 新增「索引重载只保留仍存在的页」用例",
+  "downloadUrl": "https://my.feishu.cn/file/EXHhbRYkWoM0cdx6gY9cC3Q1nRl"
 }
