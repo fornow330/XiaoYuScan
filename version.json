@@ -1,6 +1,6 @@
 {
-  "versionCode": 56,
-  "versionName": "1.9.14",
-  "notes": "1. 新增往外补边：某条边外侧与框内表面同色时，往外找到真正的边\n2. 实测上图下边、笔记本上下边不再被截掉\n95 个用例全绿",
-  "downloadUrl": "https://my.feishu.cn/file/UxM4bWSJ7oY4p6xMXIrc6IeKnye"
+  "versionCode": 57,
+  "versionName": "1.9.15",
+  "notes": "1. 边界颜色判据改为两段校验（紧贴边 8~14px、再往外 20~30px 都要不同色），软阴影不再被当背景\n2. 上边、右边继续往外跟到真实纸边\n95 个用例全绿",
+  "downloadUrl": "https://my.feishu.cn/file/L2sobO12uoSdjCx56BGcPqmunpg"
 }
