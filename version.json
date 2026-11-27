@@ -1,6 +1,6 @@
 {
   "versionCode": 56,
   "versionName": "1.9.14",
-  "notes": "1. 新增「框缩在物体内部」时往外补边的逸辑：外侧与框内表面同色则一直往外找到真正的边\n2. 实测上图下边、笔记本上下边跟到画面边缘，不再截掉半张\n95 个用例全绿",
+  "notes": "1. 新增往外补边：某条边外侧与框内表面同色时，往外找到真正的边\n2. 实测上图下边、笔记本上下边不再被截掉\n95 个用例全绿",
   "downloadUrl": "https://my.feishu.cn/file/UxM4bWSJ7oY4p6xMXIrc6IeKnye"
 }
