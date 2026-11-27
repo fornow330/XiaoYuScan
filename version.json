@@ -1,6 +1,6 @@
 {
-  "versionCode": 58,
-  "versionName": "1.9.16",
-  "notes": "1. 索引无改动时不再重写 index.json\n2. 缩略图 mtime 改为 1 秒缓存，滑动时少做 stat\n3. 图片解码遇 OOM 自动降一档分辨率重试\n4. 搜索结果的命中词高亮加粗\n98 个用例全绿",
-  "downloadUrl": "https://my.feishu.cn/file/Ux2zb2eKioP0P8xO6eVcVAKmnKg"
+  "versionCode": 59,
+  "versionName": "1.9.17",
+  "notes": "1. 私密文档列表不再显示真缩略图，改锁占位；预加载也跳过\n2. 导出图片支持页码范围（上次填的值会记住）\n98 个用例全绿",
+  "downloadUrl": "https://my.feishu.cn/file/TCDnbJcLzoFAehxpsbPcw7PonVg"
 }
