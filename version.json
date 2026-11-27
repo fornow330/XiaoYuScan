@@ -1,6 +1,6 @@
 {
-  "versionCode": 57,
-  "versionName": "1.9.15",
-  "notes": "1. 边界颜色判据改为两段校验（紧贴边 8~14px、再往外 20~30px 都要不同色），软阴影不再被当背景\n2. 上边、右边继续往外跟到真实纸边\n95 个用例全绿",
-  "downloadUrl": "https://my.feishu.cn/file/L2sobO12uoSdjCx56BGcPqmunpg"
+  "versionCode": 58,
+  "versionName": "1.9.16",
+  "notes": "1. 索引无改动时不再重写 index.json\n2. 缩略图 mtime 改为 1 秒缓存，滑动时少做 stat\n3. 图片解码遇 OOM 自动降一档分辨率重试\n4. 搜索结果的命中词高亮加粗\n98 个用例全绿",
+  "downloadUrl": "https://my.feishu.cn/file/Ux2zb2eKioP0P8xO6eVcVAKmnKg"
 }
