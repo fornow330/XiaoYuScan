@@ -1,6 +1,6 @@
 {
-  "versionCode": 55,
-  "versionName": "1.9.13",
-  "notes": "1. 区域分割支持「窄缝相邻」合并：纸面被印刷竖线/色带劈成两块时合并为整张，不再只框一半\n2. 收边（直边收紧、贴边收回、逐点拟合）新增真实边界判据：新边外侧必顶与框内表面不同色，否则不放\n3. 新增合成用例：纸面压在左边界且内部有深色竖线时，左边留在原地\n95 个用例全绿",
-  "downloadUrl": "https://my.feishu.cn/file/JJvlbl41FoeBpExfG0Fct21dnFf"
+  "versionCode": 56,
+  "versionName": "1.9.14",
+  "notes": "1. 新增「框缩在物体内部」时往外补边的逸辑：外侧与框内表面同色则一直往外找到真正的边\n2. 实测上图下边、笔记本上下边跟到画面边缘，不再截掉半张\n95 个用例全绿",
+  "downloadUrl": "https://my.feishu.cn/file/UxM4bWSJ7oY4p6xMXIrc6IeKnye"
 }
