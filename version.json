@@ -1,6 +1,6 @@
 {
-  "versionCode": 54,
-  "versionName": "1.9.12",
-  "notes": "1. 冷启动读索引时不再逐页 File.exists，改为目录列一次查表\n2. 启动的临时文件清理改为每天最多一次\n3. 新增「索引重载只保留仍存在的页」用例",
-  "downloadUrl": "https://my.feishu.cn/file/EXHhbRYkWoM0cdx6gY9cC3Q1nRl"
+  "versionCode": 55,
+  "versionName": "1.9.13",
+  "notes": "1. 区域分割支持「窄缝相邻」合并：纸面被印刷竖线/色带劈成两块时合并为整张，不再只框一半\n2. 收边（直边收紧、贴边收回、逐点拟合）新增真实边界判据：新边外侧必顶与框内表面不同色，否则不放\n3. 新增合成用例：纸面压在左边界且内部有深色竖线时，左边留在原地\n95 个用例全绿",
+  "downloadUrl": "https://my.feishu.cn/file/JJvlbl41FoeBpExfG0Fct21dnFf"
 }
